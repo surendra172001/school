@@ -1,0 +1,91 @@
+<%- include('header'); -%>
+
+    <section>
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <h1>Enquiry Form</h1>
+            <form action="/enquiryForm" method="POST">
+                <div class="form-outline mb-4">
+                    <input type="date" id="enquiryDate" name="enquiryDate" class="form-control" />
+                    <label class="form-label" for="enquiryDate">Enquiry Date</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <input type="text" id="childName" name="childName" class="form-control" />
+                    <label class="form-label" for="childName">Child Name</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <input type="date" id="DOB" name="DOB" class="form-control" />
+                    <label class="form-label" for="DOB">Date of Birth</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <select class="form-control" id="gradeName" name="gradeName">
+                        <% for( let grade of locals.grades ) { %>
+                            <option value="<%= grade.gradeName %>">
+                                <%= grade.gradeName %>
+                            </option>
+                            <% } %>
+                    </select>
+                    <label class="form-label" for="gradeName">Class for Admission</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <input type="text" id="currentSchool" name="currentSchool" class="form-control" />
+                    <label class="form-label" for="currentSchool">Current School</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <select class="form-control" id="currentGrade" name="currentGrade">
+                        <% for( let grade of locals.grades ) { %>
+                            <option value="<%= grade.gradeName %>">
+                                <%= grade.gradeName %>
+                            </option>
+                            <% } %>
+                    </select>
+                    <label class="form-label" for="currentGrade">Current Class</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <input type="text" id="fatherName" name="fatherName" class="form-control" />
+                    <label class="form-label" for="fatherName">Father Name</label>
+                </div>
+                <div class="form-outline mb-4">
+                    <input type="text" id="fatherQualification" name="fatherQualification" class="form-control" />
+                    <label class="form-label" for="fatherQualification">Father Qualification</label>
+                </div>
+                <div class="form-outline mb-4">
+                    <input type="text" id="motherName" name="motherName" class="form-control" />
+                    <label class="form-label" for="motherName">Mother Name</label>
+                </div>
+                <div class="form-outline mb-4">
+                    <input type="text" id="motherQualification" name="motherQualification" class="form-control" />
+                    <label class="form-label" for="motherQualification">Mother Qualification</label>
+                </div>
+                <div class="form-outline mb-4">
+                    <select class="form-control" id="occupation" name="occupation">
+                        <option value="BUSINESS">Business</option>
+                        <option value="SERVICE">Service</option>
+                        <option value="OTHER">Other</option>
+                    </select>
+                    <label class="form-label" for="occupation">Occupation</label>
+                </div>
+                <div class="form-outline mb-4">
+                    <input type="text" id="fatherProfession" name="fatherProfession" class="form-control" />
+                    <label class="form-label" for="fatherProfession">Father Profession</label>
+                </div>
+                <div class="form-outline mb-4">
+                    <input type="text" id="postalAddr" name="postalAddr" class="form-control" />
+                    <label class="form-label" for="postalAddr">Postal Address</label>
+                </div>
+                <div class="form-outline mb-4">
+                    <input type="text" id="contactNumber" name="contactNumber" class="form-control" />
+                    <label class="form-label" for="contactNumber">Contact Number</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Admit</button>
+            </form>
+        </div>
+    </section>
+
+    <%- include('footer'); -%>

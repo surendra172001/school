@@ -1,0 +1,43 @@
+<%- include('header'); -%>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Row</th>
+      <th>Class Name</th>
+      <th>Admission Fees</th>
+      <th>Tution Fees</th>
+      <th>Late Payment Fine</th>
+      <th>Furniture Fees</th>
+      <th>Conveyance Charges</th>
+      <th>Development Fees</th>
+      <th>Computer Fees</th>
+      <th>Minimum Transport Fees</th>
+      <th>Base Distance</th>
+      <th>Offset Transport Fees</th>
+      <th>Offset Distance</th>
+      <th>Fixed Monthly Fees</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% for( let i=0; i < locals.grades.length; i++ ) { %>
+    <tr>
+      <th><%= (i+1) %></th>
+      <td><%= locals.grades[i].gradeName %></td>
+      <td><%= locals.grades[i].admissionFees %></td>
+      <td><%= locals.grades[i].tutionFees %></td>
+      <td><%= locals.grades[i].latePaymentFine %></td>
+      <td><%= locals.grades[i].furnitureFees %></td>
+      <td><%= locals.grades[i].conveyanceCharges %></td>
+      <td><%= locals.grades[i].developmentFees %></td>
+      <td><%= locals.grades[i].computerFees %></td>
+      <td><%= locals.grades[i].baseTransportFee %></td>
+      <td><%= locals.grades[i].baseDist %></td>
+      <td><%= locals.grades[i].offsetTransportFee %></td>
+      <td><%= locals.grades[i].offsetDist %></td>
+      <td><%= locals.grades[i].fixedMonthlyFee %></td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>
+<%- include('footer'); -%>

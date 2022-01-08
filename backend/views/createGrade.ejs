@@ -1,0 +1,158 @@
+<%- include('header'); -%>
+
+<section>
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <h1>Grade Creation</h1>
+    <form action="/createGrade" method="POST">
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="gradeName"
+          name="gradeName"
+          class="form-control"
+        />
+        <label class="form-label" for="gradeName">Grade Name</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="maxSectionSize"
+          name="maxSectionSize"
+          class="form-control"
+        />
+        <label class="form-label" for="maxSectionSize">Section Size</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="admissionFees"
+          name="admissionFees"
+          class="form-control"
+        />
+        <label class="form-label" for="admissionFees">Admission Fees</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="tutionFees"
+          name="tutionFees"
+          class="form-control"
+        />
+        <label class="form-label" for="tutionFees">Tution Fees</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="latePaymentFine"
+          name="latePaymentFine"
+          class="form-control"
+        />
+        <label class="form-label" for="latePaymentFine"
+          >Late Payment Fine</label
+        >
+      </div>
+
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="furnitureFees"
+          name="furnitureFees"
+          class="form-control"
+        />
+        <label class="form-label" for="furnitureFees">Furniture Fees</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="conveyanceCharges"
+          name="conveyanceCharges"
+          class="form-control"
+        />
+        <label class="form-label" for="conveyanceCharges"
+          >Conveyance Charges</label
+        >
+      </div>
+
+      <div class="form-outline mb-4">
+        <input type="text" id="examFees" name="examFees" class="form-control" />
+        <label class="form-label" for="examFees">Exam Fees</label>
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="developmentFees"
+          name="developmentFees"
+          class="form-control"
+        />
+        <label class="form-label" for="developmentFees">Development Fees</label>
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="computerFees"
+          name="computerFees"
+          class="form-control"
+        />
+        <label class="form-label" for="computerFees">Computer Fees</label>
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="baseTransportFee"
+          name="baseTransportFee"
+          class="form-control"
+        />
+        <label class="form-label" for="baseTransportFee"
+          >Base Transport Fees</label
+        >
+      </div>
+
+      <div class="form-outline mb-4">
+        <input type="text" id="baseDist" name="baseDist" class="form-control" />
+        <label class="form-label" for="baseDist">Base Distance</label>
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="offsetTransportFee"
+          name="offsetTransportFee"
+          class="form-control"
+        />
+        <label class="form-label" for="offsetTransportFee"
+          >Offset Transport Fee</label
+        >
+      </div>
+
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="offsetDist"
+          name="offsetDist"
+          class="form-control"
+        />
+        <label class="form-label" for="offsetDist">Offset Distance</label>
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="fixedMonthlyFee"
+          name="fixedMonthlyFee"
+          class="form-control"
+        />
+        <label class="form-label" for="fixedMonthlyFee"
+          >Fixed Monthly Fees</label
+        >
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">
+        Create Grade
+      </button>
+    </form>
+  </div>
+</section>
+
+<%- include('footer'); -%>

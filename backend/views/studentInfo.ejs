@@ -1,0 +1,374 @@
+<%- include('header'); -%>
+<div>
+  <h1>Student Info</h1>
+  <section>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <form action="/student/<%= student.registrationNumber %>" enctype="multipart/form-data" method="POST">
+        <input
+          type="text"
+          id="registrationNumber"
+          name="registrationNumber"
+          value="<%= student.registrationNumber %>"
+          hidden
+        />
+        <div class="form-outline mb-4">
+          <input
+            type="text"
+            id="studentName"
+            name="studentName"
+            value="<%= student.studentName %>"
+            class="form-control"
+          />
+          <label class="form-label" for="studentName">Student Name</label>
+        </div>
+
+        <div class="form-outline mb-4">
+          <input
+            type="text"
+            id="fatherName"
+            name="fatherName"
+            value="<%= student.fatherName %>"
+            class="form-control"
+          />
+          <label class="form-label" for="fatherName">Father Name</label>
+        </div>
+
+        <div class="form-outline mb-4">
+          <input
+            type="text"
+            id="motherName"
+            name="motherName"
+            value="<%= student.motherName %>"
+            class="form-control"
+          />
+          <label class="form-label" for="motherName">Mother Name</label>
+        </div>
+        <div class="form-outline mb-4">
+          <input
+            type="text"
+            id="presentAddr"
+            name="presentAddr"
+            value="<%= student.presentAddr %>"
+            class="form-control"
+          />
+          <label class="form-label" for="presentAddr">Present Address</label>
+        </div>
+        <div class="form-outline mb-4">
+          <input
+            type="text"
+            id="permanentAddr"
+            name="permanentAddr"
+            value="<%= student.permanentAddr %>"
+            class="form-control"
+          />
+          <label class="form-label" for="permanentAddr"
+            >Permanent Address</label
+          >
+        </div>
+        <div class="form-outline mb-4">
+          <select class="form-control" id="religion" name="religion">
+             <option value="HINDU" <%= student.religion == "HINDU" ? "selected": ""%> >HINDU</option>
+             <option value="MOMEDIAN" <%= student.religion == "MOMEDIAN" ? "selected": ""%>>MOMEDIAN</option>
+             <option value="OTHER" <%= student.religion == "OTHER" ? "selected": ""%>>OTHER</option>
+          </select>
+          <label class="form-label" for="religion">Religion</label>
+       </div>
+       <div class="form-outline mb-4">
+          <select class="form-control" id="sex" name="sex">
+             <option value="MALE" <%= student.sex == "MALE" ? "selected": "" %> >Male</option>
+             <option value="FEMALE" <%= student.sex == "FEMALE" ? "selected": "" %>>Female</option>
+             <option value="OTHER" <%= student.sex == "OTHER" ? "selected": "" %>>Other</option>
+          </select>
+          <label class="form-label" for="sex">Sex</label>
+       </div>
+       <div class="form-outline mb-4">
+          <input
+             type="date"
+             id="DOB"
+             name="DOB"
+             placeholder="dd-mm-yyyy"
+             value="<%= student.DOB.toISOString().split('T')[0] %>"
+             class="form-control"
+             />
+          <label class="form-label" for="DOB">Date of Birth</label>
+       </div>
+       <div class="form-outline mb-4">
+          <select class="form-control" id="nationality" name="nationality">
+             <option value="INDIAN" <%= student.nationality == "INDIAN" ? "selected":"" %>>Indian</option>
+             <option value="NRI" <%= student.nationality == "NRI" ? "selected":"" %>>NRI</option>
+             <option value="OTHER" <%= student.nationality == "OTHER" ? "selected":"" %>>Other</option>
+          </select>
+          <label class="form-label" for="nationality">Nationality</label>
+       </div>
+       <div class="form-outline mb-4">
+          <select class="form-control" id="grade" name="grade">
+             <% for( let grade of locals.grades ) { %>
+             <option value="<%= grade.gradeName %>" selected=<%= student.grade == grade.gradeName %>>
+                <%= grade.gradeName %>
+             </option>
+             <% } %>
+          </select>
+          <label class="form-label" for="grade">Class</label>
+       </div>
+       <div class="form-outline mb-4">
+          <input
+             type="text"
+             id="section"
+             name="section"
+             value="<%= student.section %>"
+             class="form-control"
+             />
+          <label class="form-label" for="section">Section Name</label>
+       </div>
+       <div class="form-outline mb-4">
+          <input
+             type="text"
+             id="roll"
+             name="roll"
+             value="<%= student.roll %>"
+             class="form-control"
+             />
+          <label class="form-label" for="roll">Roll Number</label>
+       </div>
+       <div class="form-outline mb-4">
+          <input
+             type="text"
+             id="mobileNumber"
+             name="mobileNumber"
+             value="<%= student.mobileNumber %>"
+             class="form-control"
+             />
+          <label class="form-label" for="mobileNumber">Mobile Number</label>
+       </div>
+       <div class="form-outline mb-4">
+          <input
+             type="text"
+             id="feesPaid"
+             name="feesPaid"
+             value="<%= student.feesPaid %>"
+             class="form-control"
+             />
+          <label class="form-label" for="feesPaid">Fees Paid</label>
+       </div>
+       <div class="form-outline mb-4">
+          <input
+             type="text"
+             id="feesTotal"
+             name="feesTotal"
+             value="<%= student.feesTotal %>"
+             class="form-control"
+             />
+          <label class="form-label" for="feesTotal">Total Fees</label>
+       </div>
+       <div class="form-outline mb-4">
+          <div class="form-check">
+             <input
+                class="form-check-input"
+                type="checkbox"
+                name="transportChosen"
+                value="<%= student.transportChosen ? 'on' : undefined %>"
+                id="transportChosen"
+                />
+             <label class="form-check-label" for="transportChosen">
+             Transport Bus
+             </label>
+          </div>
+       </div>
+       <div class="form-outline mb-4">
+          <input
+             type="text"
+             id="houseDistance"
+             name="houseDistance"
+             value="<%= student.houseDistance %>"
+             class="form-control"
+             />
+          <label class="form-label" for="houseDistance">House Distance</label>
+       </div>
+       <div class="form-outline mb-4">
+         <select class="form-control" id="feeScheme" name="feeScheme">
+            <option value="1TIMEPAY" <%= student.feeScheme == "1TIMEPAY" ? "selected":"" %>>1 Time Pay</option>
+            <option value="2TIMEPAY" <%= student.feeScheme == "2TIMEPAY" ? "selected":"" %>>2 Time Pay</option>
+            <option value="3TIMEPAY" <%= student.feeScheme == "3TIMEPAY" ? "selected":"" %>>3 Time Pay</option>
+            <option value="OTHER" <%= student.feeScheme == "OTHER" ? "selected":"" %>>OTHER</option>
+         </select>
+         <label class="form-label" for="feeScheme">Fee scheme</label>
+      </div>
+      <div class="form-outline mb-4">
+         <input
+            type="text"
+            id="fatherQualification"
+            name="fatherQualification"
+            value="<%= student.fatherQualification %>"
+            class="form-control"
+            />
+         <label class="form-label" for="fatherQualification"
+            >Father Qualification</label
+            >
+      </div>
+      <div class="form-outline mb-4">
+         <input
+            type="text"
+            id="fatherProfession"
+            name="fatherProfession"
+            value="<%= student.fatherProfession %>"
+            class="form-control"
+            />
+         <label class="form-label" for="fatherProfession"
+            >Father Profession</label
+            >
+      </div>
+      <div class="form-outline mb-4">
+        <a href="<%= student.fatherPhoto %>">old Photo</a>
+         <input
+            type="file"
+            id="fatherPhoto"
+            name="fatherPhoto"
+            class="form-control"
+          />
+         <label class="form-label" for="fatherPhoto">Father Photo</label>
+      </div>
+      <div class="form-outline mb-4">
+         <input
+            type="text"
+            id="fatherAadhar"
+            name="fatherAadhar"
+            value="<%= student.fatherAadhar %>"
+            class="form-control"
+            />
+         <label class="form-label" for="fatherAadhar"
+            >Father Aadhaar Number</label
+            >
+      </div>
+      <div class="form-outline mb-4">
+         <input
+            type="text"
+            id="motherQualification"
+            name="motherQualification"
+            value="<%= student.motherQualification %>"
+            class="form-control"
+            />
+         <label class="form-label" for="motherQualification"
+            >Mother Qualification</label
+            >
+      </div>
+      <div class="form-outline mb-4">
+         <input
+            type="text"
+            id="motherProfession"
+            name="motherProfession"
+            value="<%= student.motherProfession %>"
+            class="form-control"
+            />
+         <label class="form-label" for="motherProfession"
+            >Mother Profession</label
+            >
+      </div>
+      <div class="form-outline mb-4">
+        <a href="<%= student.motherPhoto %>">old Photo</a>
+         <input
+            type="file"
+            id="motherPhoto"
+            name="motherPhoto"
+            class="form-control"
+            />
+         <label class="form-label" for="motherPhoto">Mother Photo</label>
+      </div>
+      <div class="form-outline mb-4">
+         <input
+            type="text"
+            id="motherAadhaar"
+            name="motherAadhaar"
+            value="<%= student.motherAadhaar %>"
+            class="form-control"
+            />
+         <label class="form-label" for="motherAadhaar"
+            >Mother Aadhaar Number</label
+            >
+      </div>
+      <div class="form-outline mb-4">
+         <input
+            type="date"
+            id="marriageAnniversary"
+            name="marriageAnniversary"
+            value="<%= student.marriageAnniversary.toISOString().split('T')[0] %>"
+            class="form-control"
+            />
+         <label class="form-label" for="marriageAnniversary"
+            >Marriage Anniversary</label
+            >
+      </div>
+      <div class="form-outline mb-4">
+         <input
+            type="text"
+            id="childAadhaar"
+            name="childAadhaar"
+            value="<%= student.childAadhaar %>"
+            class="form-control"
+            />
+         <label class="form-label" for="childAadhaar"
+            >Child Aadhaar Number</label
+            >
+      </div>
+      <div class="form-outline mb-4">
+        <a href="<%= student.childPhoto %>">old Photo</a>
+         <input
+            type="file"
+            id="childPhoto"
+            name="childPhoto"
+            class="form-control"
+            />
+         <label class="form-label" for="childPhoto">Child Photo</label>
+      </div>
+      <div class="form-outline mb-4">
+         <input type="text" id="height" name="height" 
+            value="<%= student.height %>"
+            class="form-control" />
+         <label class="form-label" for="height">height of child</label>
+      </div>
+      <div class="form-outline mb-4">
+         <input type="text" id="weight" name="weight"
+            value="<%= student.weight %>"
+            class="form-control" />
+         <label class="form-label" for="weight">weight child</label>
+      </div>
+      <div class="form-outline mb-4">
+         <input
+            type="text"
+            id="bloodGroup"
+            name="bloodGroup"
+            value="<%= student.bloodGroup %>"
+            class="form-control"
+            />
+         <label class="form-label" for="bloodGroup">Blood Group Child</label>
+      </div>
+      <div class="form-outline mb-4">
+         <input
+            type="text"
+            id="prevSchool"
+            name="prevSchool"
+            value="<%= student.prevSchool %>"
+            class="form-control"
+            />
+         <label class="form-label" for="prevSchool">Previous School</label>
+      </div>
+      <div class="form-outline mb-4">
+        <a href="<%= student.termCert %>">old Photo</a>
+         <input type="file" id="termCert" name="termCert" 
+            class="form-control" />
+         <label class="form-label" for="termCert"
+            >Termination Certification</label
+            >
+      </div>
+      <div class="form-outline mb-4">
+        <a href="<%= student.charCert %>">old Photo</a>
+         <input type="file" id="charCert" name="charCert" 
+            class="form-control" />
+         <label class="form-label" for="charCert">Character Certificate</label>
+      </div>
+        <button type="submit" class="btn btn-primary btn-block">Update</button>
+      </form>
+    </div>
+  </section>
+  <pre><%= student.charCert %></pre>
+</div>
+<%- include('footer'); -%>

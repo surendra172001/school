@@ -1,0 +1,333 @@
+<%- include('header'); -%>
+
+<section>
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <h1>Student Admission Form</h1>
+    <form
+      action="/admitStudent"
+      method="POST"
+      id="admissionForm"
+      enctype="multipart/form-data"
+    >
+      <div class="form-group row">
+        <label for="studentName" class="col-sm-5 col-form-label"
+          >Student Name</label
+        >
+        <div class="col-sm-7">
+          <input
+            type="text"
+            id="studentName"
+            name="studentName"
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="fatherName"
+          name="fatherName"
+          class="form-control"
+        />
+        <label class="form-label" for="fatherName">Father Name</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="motherName"
+          name="motherName"
+          class="form-control"
+        />
+        <label class="form-label" for="motherName">Mother Name</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="presentAddr"
+          name="presentAddr"
+          class="form-control"
+        />
+        <label class="form-label" for="presentAddr">Present Address</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="permanentAddr"
+          name="permanentAddr"
+          class="form-control"
+        />
+        <label class="form-label" for="permanentAddr">Permanent Address</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <select class="form-control" id="religion" name="religion">
+          <option value="HINDU">HINDU</option>
+          <option value="MOMEDIAN">MOMEDIAN</option>
+          <option value="OTHER">OTHER</option>
+        </select>
+        <label class="form-label" for="religion">Religion</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <select class="form-control" id="sex" name="sex">
+          <option value="MALE">Male</option>
+          <option value="FEMALE">Female</option>
+          <option value="OTHER">Other</option>
+        </select>
+        <label class="form-label" for="sex">Gender</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <input
+          type="date"
+          id="DOB"
+          name="DOB"
+          placeholder="dd-mm-yyyy"
+          class="form-control"
+        />
+        <label class="form-label" for="DOB">Date of Birth</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <select class="form-control" id="nationality" name="nationality">
+          <option value="INDIAN">Indian</option>
+          <option value="NRI">NRI</option>
+          <option value="OTHER">Other</option>
+        </select>
+        <label class="form-label" for="nationality">Nationality</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <select class="form-control" id="grade" name="grade">
+          <% for( let grade of locals.grades ) { %>
+          <option value="<%= grade.gradeName %>"><%= grade.gradeName %></option>
+          <% } %>
+        </select>
+        <label class="form-label" for="grade">Class</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="mobileNumber"
+          name="mobileNumber"
+          class="form-control"
+        />
+        <label class="form-label" for="mobileNumber">Mobile Number</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            name="transportChosen"
+            id="transportChosen"
+          />
+          <label class="form-check-label" for="transportChosen">
+            Transport Bus
+          </label>
+        </div>
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="houseDistance"
+          name="houseDistance"
+          class="form-control"
+        />
+        <label class="form-label" for="houseDistance">House Distance</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <select class="form-control" id="feeScheme" name="feeScheme">
+          <option value="1TIMEPAY">1 Time Pay</option>
+          <option value="2TIMEPAY">2 Time Pay</option>
+          <option value="3TIMEPAY">3 Time Pay</option>
+          <option value="OTHER">OTHER</option>
+        </select>
+        <label class="form-label" for="feeScheme">Fee scheme</label>
+      </div>
+
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="fatherQualification"
+          name="fatherQualification"
+          class="form-control"
+        />
+        <label class="form-label" for="fatherQualification"
+          >Father Qualification</label
+        >
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="fatherProfession"
+          name="fatherProfession"
+          class="form-control"
+        />
+        <label class="form-label" for="fatherProfession"
+          >Father Profession</label
+        >
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="file"
+          id="fatherPhoto"
+          name="fatherPhoto"
+          class="form-control"
+        />
+        <label class="form-label" for="fatherPhoto">Father Photo</label>
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="fatherAadhar"
+          name="fatherAadhar"
+          class="form-control"
+        />
+        <label class="form-label" for="fatherAadhar"
+          >Father Aadhaar Number</label
+        >
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="motherQualification"
+          name="motherQualification"
+          class="form-control"
+        />
+        <label class="form-label" for="motherQualification"
+          >Mother Qualification</label
+        >
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="motherProfession"
+          name="motherProfession"
+          class="form-control"
+        />
+        <label class="form-label" for="motherProfession"
+          >Mother Profession</label
+        >
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="file"
+          id="motherPhoto"
+          name="motherPhoto"
+          class="form-control"
+        />
+        <label class="form-label" for="motherPhoto">Mother Photo</label>
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="motherAadhaar"
+          name="motherAadhaar"
+          class="form-control"
+        />
+        <label class="form-label" for="motherAadhaar"
+          >Mother Aadhaar Number</label
+        >
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="date"
+          id="marriageAnniversary"
+          name="marriageAnniversary"
+          class="form-control"
+        />
+        <label class="form-label" for="marriageAnniversary"
+          >Marriage Anniversary</label
+        >
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="childAadhaar"
+          name="childAadhaar"
+          class="form-control"
+        />
+        <label class="form-label" for="childAadhaar"
+          >Child Aadhaar Number</label
+        >
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="file"
+          id="childPhoto"
+          name="childPhoto"
+          class="form-control"
+        />
+        <label class="form-label" for="childPhoto">Child Photo</label>
+      </div>
+      <div class="form-outline mb-4">
+        <input type="text" id="height" name="height" class="form-control" />
+        <label class="form-label" for="height">height of child</label>
+      </div>
+      <div class="form-outline mb-4">
+        <input type="text" id="weight" name="weight" class="form-control" />
+        <label class="form-label" for="weight">weight child</label>
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="bloodGroup"
+          name="bloodGroup"
+          class="form-control"
+        />
+        <label class="form-label" for="bloodGroup">Blood Group Child</label>
+      </div>
+      <div class="form-outline mb-4">
+        <input
+          type="text"
+          id="prevSchool"
+          name="prevSchool"
+          class="form-control"
+        />
+        <label class="form-label" for="prevSchool">Previous School</label>
+      </div>
+      <div class="form-outline mb-4">
+        <input type="file" id="termCert" name="termCert" class="form-control" />
+        <label class="form-label" for="termCert"
+          >Termination Certification</label
+        >
+      </div>
+      <div class="form-outline mb-4">
+        <input type="file" id="charCert" name="charCert" class="form-control" />
+        <label class="form-label" for="charCert">Character Certificate</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Admit</button>
+    </form>
+  </div>
+</section>
+
+<script>
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyEventListeners);
+  } else {
+    applyEventListeners();
+  }
+  function applyEventListeners() {
+    document
+      .getElementById("admissionForm")
+      .addEventListener("submit", handleSubmit);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const userResponse = confirm("Admit the student in the school?");
+    if (userResponse === true) {
+      event.target.submit();
+    }
+  }
+</script>
+<%- include('footer'); -%>

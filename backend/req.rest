@@ -1,0 +1,187 @@
+//ADMIN
+# admit a student
+POST http://localhost:8000/admitStudent HTTP/1.1
+User-Agent: rest-client
+Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
+Content-Type: application/json
+
+{
+  "studentName": "Narendra Pandey",
+  "fatherName": "Anuruddhaprasad Pandey",
+  "motherName": "Nilam Pandey",
+  "permanentAddr": "laxmanpur",
+  "presentAddr": "laxmanpur",
+  "religion": "HINDU",
+  "sex": "MALE",
+  "DOB": "05-11-2010",
+  "nationality": "INDIAN",
+  "grade": "1",
+  "mobileNumber": "9137423018",
+  "transportChosen": "on",
+  "houseDistance": 4,
+  "feeScheme": "1TIMEPAY",
+  "fatherQualification": "",
+  "fatherProfession": "",
+  "fatherPhoto": "",
+  "fatherAadhar": "",
+  "motherQualification": "",
+  "motherProfession": "",
+  "motherPhoto": "",
+  "motherAadhaar": "",
+  "marriageAnniversary": "",
+  "childAadhaar": "",
+  "childPhoto": "",
+  "height": "",
+  "weight": "",
+  "bloodGroup": "",
+  "previousSchool": "",
+  "termCert": "",
+  "charCert": ""
+}
+
+###
+# create a grade
+POST http://localhost:8000/createGrade HTTP/1.1
+User-Agent: rest-client
+Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
+Content-Type: application/json
+
+{
+  "gradeName": "3",
+  "maxSectionSize": "40",
+  "admissionFees": 100,
+  "tutionFees": 150,
+  "latePaymentFine": 100,
+  "furnitureFees": 100,
+  "conveyanceCharges": 100,
+  "examFees": 100,
+  "developmentFees": 100,
+  "computerFees": 100,
+  "baseTransportFee": 350,
+  "baseDist": 350,
+  "offsetTransportFee": 350,
+  "offsetDist": 350,
+  "fixedMonthlyFee": 350
+}
+
+# gradeName
+# maxSectionSize
+# admissionFees
+# tutionFees
+# latePaymentFine
+# furnitureFees
+# conveyanceCharges
+# examFees
+# developmentFees
+# computerFees
+# baseTransportFee,
+# baseDist,
+# offsetTransportFee,
+# offsetDist,
+# fixedMonthlyFee,
+# studentCnt
+# sections
+# totalFixedFees
+
+# {
+#   "gradeName": "1",
+#   "studentCnt": "0",
+#   "maxSectionSize": "40",
+#   "sections": [],
+#   "admissionFees": 100,
+#   "tutionFees": 100,
+#   "latePaymentFine": 100,
+#   "furnitureFees": 100,
+#   "conveyanceCharges": 100,
+#   "examFees": 100,
+#   "developmentFees": 100,
+#   "computerFees": 100
+# }
+
+
+###
+#Enquiry Form
+POST http://localhost:8000/enquiryForm HTTP/1.1
+User-Agent: rest-client
+Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
+Content-Type: application/json
+
+{
+  "enquiryDate": "2021-11-01",
+  "childName": "Narendra Pandey",
+  "DOB": "2021-11-01",
+  "gradeName": "1",
+  "currentSchool": "lvp",
+  "currentGrade": "2",
+  "fatherName": "MALE",
+  "fatherQualification": "xyz",
+  "motherName": "xyz",
+  "motherQualification": "xyz",
+  "occupation": "SERVICE",
+  "fatherProfession": "xyz",
+  "postalAddr": "xyz",
+  "contactNumber": "9137423018"
+}
+
+# enquiryDate
+# childName
+# DOB
+# gradeName
+# currentSchool
+# currentGrade
+# fatherName
+# fatherQualification
+# motherName
+# motherQualification
+# occupation
+# fatherProfession
+# postalAddr
+# contactNumber
+
+###
+POST http://localhost:8000/test HTTP/1.1
+User-Agent: rest-client
+Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
+Content-Type: application/json
+
+
+###
+POST http://localhost:8000/attendanceStudents/1/1 HTTP/1.1
+User-Agent: rest-client
+Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
+Content-Type: application/json
+
+{
+  "students": [
+    {
+      "grade": "1",
+      "registrationNumber": "1638460381868"
+    },
+    {
+      "grade": "1",
+      "registrationNumber": "1638460404490"
+    },
+    {
+      "grade": "1",
+      "registrationNumber": "1638460414417"
+    }
+  ]
+}
+
+
+###
+# all grades
+GET http://localhost:8000/allGrades HTTP/1.1
+User-Agent: rest-client
+Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MThlNGMzNjY2Y2Y0NzIxNmJmYjE0NTciLCJpYXQiOjE2Mzg0NTk2ODd9.0HLOy9GNN11375oNhAjgCjrPMuVmtJSPCit_F2ozAv4
+
+
+###
+#all students
+GET http://localhost:8000/allStudents HTTP/1.1
+User-Agent: rest-client
+Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MThlNGMzNjY2Y2Y0NzIxNmJmYjE0NTciLCJpYXQiOjE2Mzg0NTk2ODd9.0HLOy9GNN11375oNhAjgCjrPMuVmtJSPCit_F2ozAv4
