@@ -1,24 +1,85 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { postData, API, getToken } from "../helper";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+
+const initialValues = {
+  gradeName: "",
+  maxSectionSize: "",
+  admissionFees: "",
+  tutionFees: "",
+  latePaymentFine: "",
+  furnitureFees: "",
+  conveyanceCharges: "",
+  developmentFees: "",
+  computerFees: "",
+  examFees: "",
+  baseTransportFee: "",
+  baseDist: "",
+  offsetTransportFee: "",
+  offsetDist: "",
+  fixedMonthlyFee: "",
+};
+
+const validationSchema = Yup.object().shape({
+  gradeName: Yup.string()
+    .required("Grade Name is required")
+    .min(1, "Grade Name must be atleast 1 characters")
+    .max(4, "Grade Name can't exceed 4 characters"),
+  maxSectionSize: Yup.number()
+    .required("Section size is required")
+    .min(1, "Father Name must be atleast 3 characters"),
+  admissionFees: Yup.number()
+    .required("Admission Fees is required")
+    .min(1, "Admission Fees atleast 1"),
+  tutionFees: Yup.number()
+    .required("Tution Fees is required")
+    .min(1, "Tution Fees atleast 1"),
+  latePaymentFine: Yup.number()
+    .required("Late Payment Fine is required")
+    .min(1, "Late Payment Fine should be atleast 1"),
+  furnitureFees: Yup.number()
+    .required("Furniture Fees Fine is required")
+    .min(1, "Furniture Fees should be atleast 1"),
+  conveyanceCharges: Yup.number()
+    .required("Conveyance Charges Fine is required")
+    .min(1, "Conveyance Charges should be atleast 1"),
+  developmentFees: Yup.number()
+    .required("Development Fees is required")
+    .min(1, "Development Fees should be atleast 1"),
+  computerFees: Yup.number()
+    .required("Computer Fees is required")
+    .min(1, "Computer Fees should be atleast 1"),
+  examFees: Yup.number()
+    .required("Exam Fees is required")
+    .min(1, "Exam Fees should be atleast 1"),
+  baseTransportFee: Yup.number()
+    .required("Base Transport Fee is required")
+    .min(1, "Base Transport Fee should be atleast 1"),
+  baseDist: Yup.number()
+    .required("Base Dist is required")
+    .min(1, "Base Dist should be atleast 1"),
+  offsetTransportFee: Yup.number()
+    .required("Offset Transport Fee is required")
+    .min(1, "Offset Transport Fee should be atleast 1"),
+  offsetDist: Yup.number()
+    .required("Offset Dist is required")
+    .min(1, "Offset Dist should be atleast 1"),
+  fixedMonthlyFee: Yup.number()
+    .required("Fixed Monthly Fee is required")
+    .min(1, "Fixed Monthly Fee should be atleast 1"),
+});
 
 export default function AddGrade() {
-  const [values, setValues] = useState({
-    gradeName: "",
-    maxSectionSize: "",
-    admissionFees: "",
-    tutionFees: "",
-    latePaymentFine: "",
-    furnitureFees: "",
-    conveyanceCharges: "",
-    developmentFees: "",
-    computerFees: "",
-    examFees: "",
-    baseTransportFee: "",
-    baseDist: "",
-    offsetTransportFee: "",
-    offsetDist: "",
-    fixedMonthlyFee: "",
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: initialValues,
+    resolver: yupResolver(validationSchema),
   });
 
   const [metaData, setMetaData] = useState({
@@ -27,18 +88,7 @@ export default function AddGrade() {
     error: "",
   });
 
-  const handleChange = (propName) => (event) => {
-    if (event.target.files === null) {
-      const value =
-        event.target.type === "checkbox"
-          ? event.target.checked
-          : event.target.value;
-      setValues({ ...values, [propName]: value });
-    }
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const onSubmit = async (values) => {
     setMetaData({ ...metaData, loading: true });
     try {
       const formBody = { ...values };
@@ -56,23 +106,6 @@ export default function AddGrade() {
 
       const result = await postData(URL, token, multipartBody);
       console.log(result);
-      setValues({
-        gradeName: "",
-        maxSectionSize: "",
-        admissionFees: "",
-        tutionFees: "",
-        latePaymentFine: "",
-        furnitureFees: "",
-        conveyanceCharges: "",
-        developmentFees: "",
-        computerFees: "",
-        examFees: "",
-        baseTransportFee: "",
-        baseDist: "",
-        offsetTransportFee: "",
-        offsetDist: "",
-        fixedMonthlyFee: "",
-      });
       setMetaData({ ...metaData, didRedirect: true, loading: false });
     } catch (error) {
       setMetaData({ ...metaData, error: error, loading: false });
@@ -85,7 +118,7 @@ export default function AddGrade() {
       <h1 className="mt-5">Grade Creation Form</h1>
       <div className="border border-danger border-5 my-5 p-5 w-50 rounded">
         <div className="container d-flex flex-column">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row mb-3">
               <label htmlFor="gradeName" className="col-sm-3 col-form-label">
                 Grade Name
@@ -94,12 +127,14 @@ export default function AddGrade() {
                 <input
                   type="text"
                   className="form-control"
-                  name="gradeName"
-                  id="gradeName"
-                  value={values.gradeName}
-                  onChange={handleChange("gradeName")}
+                  {...register("gradeName")}
                 />
               </div>
+              {errors.gradeName && (
+                <span className="alert alert-danger">
+                  {errors.gradeName.message}
+                </span>
+              )}
             </div>
 
             <div className="row mb-3">
@@ -111,14 +146,16 @@ export default function AddGrade() {
               </label>
               <div className="col-sm-7">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
-                  name="maxSectionSize"
-                  id="maxSectionSize"
-                  value={values.maxSectionSize}
-                  onChange={handleChange("maxSectionSize")}
+                  {...register("maxSectionSize")}
                 />
               </div>
+              {errors.maxSectionSize && (
+                <span className="alert alert-danger">
+                  {errors.maxSectionSize.message}
+                </span>
+              )}
             </div>
             <div className="row mb-3">
               <label
@@ -129,14 +166,16 @@ export default function AddGrade() {
               </label>
               <div className="col-sm-7">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
-                  name="admissionFees"
-                  id="admissionFees"
-                  value={values.admissionFees}
-                  onChange={handleChange("admissionFees")}
+                  {...register("admissionFees")}
                 />
               </div>
+              {errors.admissionFees && (
+                <span className="alert alert-danger">
+                  {errors.admissionFees.message}
+                </span>
+              )}
             </div>
             <div className="row mb-3">
               <label htmlFor="tutionFees" className="col-sm-3 col-form-label">
@@ -144,14 +183,17 @@ export default function AddGrade() {
               </label>
               <div className="col-sm-7">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   name="tutionFees"
-                  id="tutionFees"
-                  value={values.tutionFees}
-                  onChange={handleChange("tutionFees")}
+                  {...register("tutionFees")}
                 />
               </div>
+              {errors.tutionFees && (
+                <span className="alert alert-danger">
+                  {errors.tutionFees.message}
+                </span>
+              )}
             </div>
             <div className="row mb-3">
               <label
@@ -162,14 +204,16 @@ export default function AddGrade() {
               </label>
               <div className="col-sm-7">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
-                  name="latePaymentFine"
-                  id="latePaymentFine"
-                  value={values.latePaymentFine}
-                  onChange={handleChange("latePaymentFine")}
+                  {...register("latePaymentFine")}
                 />
               </div>
+              {errors.latePaymentFine && (
+                <span className="alert alert-danger">
+                  {errors.latePaymentFine.message}
+                </span>
+              )}
             </div>
             <div className="row mb-3">
               <label
@@ -180,14 +224,16 @@ export default function AddGrade() {
               </label>
               <div className="col-sm-7">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
-                  name="furnitureFees"
-                  id="furnitureFees"
-                  value={values.furnitureFees}
-                  onChange={handleChange("furnitureFees")}
+                  {...register("furnitureFees")}
                 />
               </div>
+              {errors.furnitureFees && (
+                <span className="alert alert-danger">
+                  {errors.furnitureFees.message}
+                </span>
+              )}
             </div>
             <div className="row mb-3">
               <label
@@ -198,14 +244,16 @@ export default function AddGrade() {
               </label>
               <div className="col-sm-7">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
-                  name="conveyanceCharges"
-                  id="conveyanceCharges"
-                  value={values.conveyanceCharges}
-                  onChange={handleChange("conveyanceCharges")}
+                  {...register("conveyanceCharges")}
                 />
               </div>
+              {errors.conveyanceCharges && (
+                <span className="alert alert-danger">
+                  {errors.conveyanceCharges.message}
+                </span>
+              )}
             </div>
             <div className="row mb-3">
               <label
@@ -216,14 +264,16 @@ export default function AddGrade() {
               </label>
               <div className="col-sm-7">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
-                  name="developmentFees"
-                  id="developmentFees"
-                  value={values.developmentFees}
-                  onChange={handleChange("developmentFees")}
+                  {...register("developmentFees")}
                 />
               </div>
+              {errors.developmentFees && (
+                <span className="alert alert-danger">
+                  {errors.developmentFees.message}
+                </span>
+              )}
             </div>
 
             <div className="row mb-3">
@@ -232,14 +282,16 @@ export default function AddGrade() {
               </label>
               <div className="col-sm-7">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
-                  name="computerFees"
-                  id="computerFees"
-                  value={values.computerFees}
-                  onChange={handleChange("computerFees")}
+                  {...register("computerFees")}
                 />
               </div>
+              {errors.computerFees && (
+                <span className="alert alert-danger">
+                  {errors.computerFees.message}
+                </span>
+              )}
             </div>
 
             <div className="row mb-3">
@@ -248,14 +300,16 @@ export default function AddGrade() {
               </label>
               <div className="col-sm-7">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
-                  name="examFees"
-                  id="examFees"
-                  value={values.examFees}
-                  onChange={handleChange("examFees")}
+                  {...register("examFees")}
                 />
               </div>
+              {errors.examFees && (
+                <span className="alert alert-danger">
+                  {errors.examFees.message}
+                </span>
+              )}
             </div>
             <div className="row mb-3">
               <label
@@ -266,14 +320,16 @@ export default function AddGrade() {
               </label>
               <div className="col-sm-7">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
-                  name="baseTransportFee"
-                  id="baseTransportFee"
-                  value={values.baseTransportFee}
-                  onChange={handleChange("baseTransportFee")}
+                  {...register("baseTransportFee")}
                 />
               </div>
+              {errors.baseTransportFee && (
+                <span className="alert alert-danger">
+                  {errors.baseTransportFee.message}
+                </span>
+              )}
             </div>
             <div className="row mb-3">
               <label htmlFor="baseDist" className="col-sm-3 col-form-label">
@@ -281,14 +337,16 @@ export default function AddGrade() {
               </label>
               <div className="col-sm-7">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
-                  name="baseDist"
-                  id="baseDist"
-                  value={values.baseDist}
-                  onChange={handleChange("baseDist")}
+                  {...register("baseDist")}
                 />
               </div>
+              {errors.baseDist && (
+                <span className="alert alert-danger">
+                  {errors.baseDist.message}
+                </span>
+              )}
             </div>
             <div className="row mb-3">
               <label
@@ -299,14 +357,16 @@ export default function AddGrade() {
               </label>
               <div className="col-sm-7">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
-                  name="offsetTransportFee"
-                  id="offsetTransportFee"
-                  value={values.offsetTransportFee}
-                  onChange={handleChange("offsetTransportFee")}
+                  {...register("offsetTransportFee")}
                 />
               </div>
+              {errors.offsetTransportFee && (
+                <span className="alert alert-danger">
+                  {errors.offsetTransportFee.message}
+                </span>
+              )}
             </div>
             <div className="row mb-3">
               <label htmlFor="offsetDist" className="col-sm-3 col-form-label">
@@ -314,14 +374,17 @@ export default function AddGrade() {
               </label>
               <div className="col-sm-7">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   name="offsetDist"
-                  id="offsetDist"
-                  value={values.offsetDist}
-                  onChange={handleChange("offsetDist")}
+                  {...register("offsetDist")}
                 />
               </div>
+              {errors.offsetDist && (
+                <span className="alert alert-danger">
+                  {errors.offsetDist.message}
+                </span>
+              )}
             </div>
             <div className="row mb-3">
               <label
@@ -332,14 +395,17 @@ export default function AddGrade() {
               </label>
               <div className="col-sm-7">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   name="fixedMonthlyFee"
-                  id="fixedMonthlyFee"
-                  value={values.fixedMonthlyFee}
-                  onChange={handleChange("fixedMonthlyFee")}
+                  {...register("fixedMonthlyFee")}
                 />
               </div>
+              {errors.fixedMonthlyFee && (
+                <span className="alert alert-danger">
+                  {errors.fixedMonthlyFee.message}
+                </span>
+              )}
             </div>
 
             <div className="d-flex flex-column align-items-center">
