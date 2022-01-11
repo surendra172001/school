@@ -2,8 +2,6 @@ import React from "react";
 import About from "./components/About";
 import AllStudents from "./components/AllStudents";
 import AllGrades from "./components/AllGrades";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import Admin from "./components/Admin";
 import AdmitStudent from "./components/AdmitStudent";
 import AddGrade from "./components/AddGrade";
@@ -19,6 +17,7 @@ import HireTeacher from "./components/HireTeacher";
 import AllTeachers from "./components/AllTeachers";
 import Attendance from "./components/Attendance";
 import ValidationCheckComp from "./components/ValidationCheckComp";
+import AttendanceView from "./components/AttendanceView";
 // import Test from "./components/Test";
 
 export default function AppRoutes() {
@@ -41,6 +40,7 @@ export default function AppRoutes() {
         <Route path="/grade/:gradeName" element={<GradeUpdate />} />
         <Route path="/feeStructure" element={<FeeStructure />} />
         <Route path="/attendance" element={<Attendance />} />
+        <Route path="/attendanceView" element={<AttendanceView />} />
         <Route path="/about" element={<About />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signout" element={<Signout />} />

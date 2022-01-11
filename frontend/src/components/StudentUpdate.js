@@ -2,6 +2,75 @@ import React, { useState, useEffect } from "react";
 import { fetchData, postData, API, getToken } from "../helper";
 import { useParams, Navigate } from "react-router-dom";
 
+// import { useForm } from "react-hook-form";
+// import { yupResolver } from "@hookform/resolvers/yup";
+// import * as Yup from "yup";
+
+// Yup.addMethod(Yup.string, "stripEmptyString", function () {
+//   return this.transform((value) => (value === "" ? undefined : value));
+// });
+
+// const validationSchema = Yup.object().shape({
+//   studentName: Yup.string()
+//     .required("Student Name is required")
+//     .min(3, "Student Name must be atleast 3 characters")
+//     .max(50, "Student Name can't exceed 50 characters"),
+//   fatherName: Yup.string()
+//     .required("Father Name is required")
+//     .min(3, "Father Name must be atleast 3 characters")
+//     .max(50, "Father Name can't exceed 50 characters"),
+//   motherName: Yup.string()
+//     .required("Mother Name is required")
+//     .min(3, "Mother Name must be atleast 3 characters")
+//     .max(50, "Mother Name can't exceed 50 characters"),
+//   presentAddr: Yup.string()
+//     .required("Present address is required")
+//     .min(10, "Present address must be atleast 3 characters")
+//     .max(100, "Present address can't exceed 100 characters"),
+//   permanentAddr: Yup.string()
+//     .min(10, "Permanent address must be atleast 3 characters")
+//     .max(100, "Permanent address can't exceed 100 characters"),
+//   religion: Yup.string().required("Religion Name is required").oneOf(RELIGIONS),
+//   sex: Yup.string().required("Gender is required").oneOf(SEX),
+//   DOB: Yup.date().required("Date Of Birth is required"),
+//   nationality: Yup.string()
+//     .required("Nationality is required")
+//     .oneOf(NATIONALITY),
+//   grade: Yup.string().required("Grade Name is required"),
+//   mobileNumber: Yup.string()
+//     .required("Mobile Number is required")
+//     .matches(/^\d{10}$/, "Invalid mobile number"),
+//   transportChosen: Yup.boolean(),
+//   houseDistance: Yup.number()
+//     .required("house distance is required")
+//     .min(0, "House distance cannot be negative")
+//     .max(50, "House distance must be less than 50km"),
+//   feeScheme: Yup.string().required("Fee Scheme is required").oneOf(FEESCHEMES),
+//   fatherQualification: Yup.string().stripEmptyString().default("NA"),
+//   fatherProfession: Yup.string().stripEmptyString().default("NA"),
+//   fatherAadhar: Yup.string()
+//     .required("Father Aadhar Number is required")
+//     .matches(/^\d{12}$/, "Invalid aadhar number"),
+//   motherQualification: Yup.string().stripEmptyString().default("NA"),
+//   motherProfession: Yup.string().stripEmptyString().default("NA"),
+//   motherAadhaar: Yup.string()
+//     .required("Mother Aadhar Number is required")
+//     .matches(/^\d{12}$/, "Invalid aadhar number"),
+//   marriageAnniversary: Yup.date(),
+//   childAadhaar: Yup.string()
+//     .required("Child Aadhar Number is required")
+//     .matches(/^\d{12}$/, "Invalid aadhar number"),
+//   height: Yup.number()
+//     .required("Height is required")
+//     .min(2, "Child height must be atleast 2 feets")
+//     .max(7, "Invalid Height"),
+//   weight: Yup.number()
+//     .required("Weight is required")
+//     .min(20, "Invalid weight")
+//     .max(100, "Invalid weight"),
+//   bloodGroup: Yup.string().oneOf(BLOODGROUPS),
+// });
+
 export default function StudentUpdate() {
   const { registrationNumber } = useParams();
   const [grades, setGrades] = useState([]);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { postData, API, getToken } from "../helper";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -82,6 +82,8 @@ export default function AddGrade() {
     resolver: yupResolver(validationSchema),
   });
 
+  let navigate = useNavigate();
+
   const [metaData, setMetaData] = useState({
     didRedirect: false,
     loading: false,
@@ -105,6 +107,7 @@ export default function AddGrade() {
       const token = getToken();
 
       const result = await postData(URL, token, multipartBody);
+      navigate("/admin");
       console.log(result);
       setMetaData({ ...metaData, didRedirect: true, loading: false });
     } catch (error) {
@@ -419,16 +422,5 @@ export default function AddGrade() {
     </div>
   );
 
-  const performRedirect = () => {
-    if (metaData.didRedirect) {
-      return <Navigate to="/admin" />;
-    }
-  };
-
-  return (
-    <>
-      {performRedirect()}
-      {createGradeForm()}
-    </>
-  );
+  return createGradeForm();
 }
